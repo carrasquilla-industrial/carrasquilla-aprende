@@ -1,6 +1,6 @@
 # Arquitectura prevista para caracterización autorizada
 
-La página `caracterizacion.html` es una demostración funcional con datos anonimizados. La selección de rol ocurre en el navegador y **no protege datos reales**.
+La página `caracterizacion.html` usa Firebase Authentication con Google y Cloud Firestore. Los permisos efectivos se aplican mediante `firestore.rules`, no mediante la interfaz del navegador.
 
 ## Requisitos antes de conectar información real
 
@@ -20,4 +20,4 @@ La API para docentes no debe devolver documentos de identidad, direcciones, tel�
 
 ## Sustitución de la fuente demostrativa
 
-Actualmente `FUENTE_DEMO` apunta a `data/caracterizacion-demo.json`. En producción debe reemplazarse por un endpoint autenticado. No debe publicarse una hoja de cálculo con datos sensibles ni almacenarse información real dentro del repositorio público.
+La fuente activa es la colección privada `caracterizaciones` de Firestore. El archivo demostrativo no es consultado por el módulo autenticado. No debe publicarse una hoja de cálculo con datos sensibles ni almacenarse información real dentro del repositorio público.

@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function profile() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
+    function activeUser() { return signedIn() && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid)) && profile().activo == true; }
+    function fullAccess() { return activeUser() && profile().rol in ['COORDINACION', 'ORIENTACION']; }
+    function assignedTeacher(course) { return activeUser() && profile().rol == 'DOCENTE' && course in profile().cursos; }
+    match /usuarios/{userId} { allow read: if activeUser() && request.auth.uid == userId; allow write: if false; }
+    match /caracterizaciones/{recordId} { allow read: if fullAccess() || assignedTeacher(resource.data.curso); allow write: if false; }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
