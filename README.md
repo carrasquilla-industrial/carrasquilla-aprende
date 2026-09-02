@@ -14,10 +14,11 @@ No deben incorporarse nombres de estudiantes, correos, observaciones internas ni
 
 El archivo principal es `index.html` y está preparado para GitHub Pages. Cada actualización enviada a la rama principal se publica automáticamente.
 
+El módulo `caracterizacion.html` es una demostración privada por rol con datos anonimizados. Su arquitectura de producción está documentada en `docs/ARQUITECTURA_CARACTERIZACION.md`; no debe conectarse a datos reales mientras el acceso sea exclusivamente del lado del navegador.
+
 ## Administración institucional
 
 - Mantener al menos dos propietarios autorizados en la organización de GitHub.
 - Activar verificación en dos pasos en todas las cuentas administradoras.
 - No compartir contraseñas.
 - Conservar privados los archivos de revisión, carga docente y archivo institucional.
-
